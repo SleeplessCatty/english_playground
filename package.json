@@ -8,7 +8,7 @@
     "start": "node server.mjs"
   },
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "dependencies": {
     "@google-cloud/text-to-speech": "^5.0.1",
     "@google/generative-ai": "^0.21.0",
