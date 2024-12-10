@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Typing Speed Test</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navigation">
+            <a href="/" class="home-button">
+                <svg class="home-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                Home
+            </a>
+        </nav>
+        
+        <main class="main-content">
+            <h1 class="title">English Typing Speed Test</h1>
+            
+            <div class="typing-section">
+                <div class="text-display">
+                    <p id="chinese_sentence" class="sentence chinese"></p>
+                    <p id="english_sentence" class="sentence english"></p>
+                </div>
+                
+                <div class="input-container">
+                    <textarea id="input" class="input-area" placeholder="Start typing English..."></textarea>
+                </div>
+            </div>
+
+            <div class="controls-section">
+                <div class="primary-controls">
+                    <button id="startButton" class="btn primary" onclick="startTest()">
+                        <svg class="icon" viewBox="0 0 24 24" width="16" height="16">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        Start Test
+                    </button>
+                    <button id="stopButton" class="btn secondary" onclick="stopTest()">
+                        <svg class="icon" viewBox="0 0 24 24" width="16" height="16">
+                            <path d="M6 6h12v12H6z"/>
+                        </svg>
+                        Stop Test
+                    </button>
+                </div>
+                
+                <div class="secondary-controls">
+                    <button id="changeButton" class="btn" onclick="changeSentence()">
+                        <svg class="icon" viewBox="0 0 24 24" width="16" height="16">
+                            <path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"/>
+                        </svg>
+                        Change Sentence
+                    </button>
+                </div>
+            </div>
+
+            <div id="results" class="results-section">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Time:</span>
+                        <span id="time" class="stat-value">0</span>
+                        <span class="stat-unit">seconds</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Speed:</span>
+                        <span id="wpm" class="stat-value">0</span>
+                        <span class="stat-unit">WPM</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/static/typing_speed.js"></script>
+</body>
+</html>
