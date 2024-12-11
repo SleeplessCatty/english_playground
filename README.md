@@ -1,13 +1,14 @@
 # English Playground
 
-A web-based application for English learning and typing practice, featuring text-to-speech capabilities and typing speed measurement.
+An interactive web application for English language learning, featuring a clean, minimalist interface focused on typing practice and translation exercises.
 
 ## Features
 
-- Text-to-speech conversion using Google Cloud TTS
-- AI-powered content generation using Google Gemini
-- Typing speed measurement and practice
-- Interactive web interface
+- **Typing Speed Test**: Practice typing speed and accuracy with English sentences
+- **Chinese to English Translation**: Improve translation skills with interactive exercises
+- **Text-to-Speech**: Listen to correct English pronunciations using Google Cloud TTS
+- **AI-Powered Content**: Generate dynamic content using Google Gemini AI
+- **Minimalist Design**: Distraction-free interface focused on learning
 
 ## Prerequisites
 
@@ -45,12 +46,19 @@ A web-based application for English learning and typing practice, featuring text
    http://localhost:6001
    ```
 
+3. Choose your learning activity:
+   - **Typing Speed Test**: Focus on typing practice in a distraction-free environment
+   - **Translation Test**: Practice Chinese to English translation with instant feedback
+
 ## Project Structure
 
-- `server.mjs`: Main server file containing API endpoints and business logic
+- `server.mjs`: Main server file with API endpoints and business logic
 - `templates/`: HTML templates for the web interface
+  - `home.html`: Clean landing page with activity selection
+  - `typing_speed.html`: Minimalist typing practice interface
+  - `chinese_to_english.html`: Focused translation practice interface
 - `static/`: Static assets (CSS, JavaScript, images)
-- `sentences/`: Contains text data for the application
+- `sentences/`: Text data for exercises
 
 ## Dependencies
 
@@ -61,4 +69,4 @@ A web-based application for English learning and typing practice, featuring text
 
 ## License
 
-This project is licensed under the Apache-2.0 license.
+This project is licensed under the ISC License.
