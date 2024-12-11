@@ -21,7 +21,6 @@ const config = {
   },
 };
 
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -111,15 +110,26 @@ app.post("/texttospeech", async (req, res, next) => {
     };
 
     // 发送 POST 请求到 Google Cloud Text-to-Speech API
-    const response = await axios.post("https://texttospeech.googleapis.com/v1/text:synthesize", request, 
+    const response = await axios.post(
+      "https://texttospeech.googleapis.com/v1/text:synthesize",
+      request,
       {
-      params: {
-        key: config.geminiApiKey
+        params: {
+          key: config.geminiApiKey,
+        },
       }
-    });
+    );
 
     // API 返回的音频内容是 base64 编码的
-    const audioContent = Buffer.from(response.data.audioContent, 'base64');
+    const audioContent = Buffer.from(response.data.audioContent, "base64");
+
+    // 设置正确的响应头
+    res.set({
+      "Content-Type": "audio/mpeg",
+      "Content-Length": audioContent.length,
+      "Accept-Ranges": "bytes",
+      "Cache-Control": "no-cache",
+    });
 
     // Send the audio data directly to the client
     res.send(audioContent);
