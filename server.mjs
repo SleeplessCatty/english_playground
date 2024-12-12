@@ -142,18 +142,26 @@ app.post("/chinesetoenglishscore", async (req, res, next) => {
   try {
     const { chinese, english } = req.body;
     const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash",
+      model: "gemini-1.5-flash-8b",
       generationConfig: config.generationConfig,
     });
     const prompt = `
+      I will provide a Chinese sentence and its English translation. Please evaluate the translation from the following perspectives:
+	    1.	Accuracy (Does the English translation correctly convey the meaning of the Chinese sentence?)
+	    2.	Fluency (Is the English translation grammatically correct and natural-sounding?)
+	    3.	Cultural Appropriateness (Does the translation take into account cultural nuances and avoid awkward or inappropriate expressions?)
+	    4.	Completeness (Does the English translation include all the essential information from the Chinese sentence?)
+
+      For each category, give a score from 0 to 10, where 10 is perfect and 0 is completely unacceptable. Then provide an overall score (the average of the four categories). After scoring, briefly explain why each score was given in plain language, pointing out any strengths or weaknesses in the translation.
+      
+      This is the Chinese sentence and its English translation:
       Chinese: "${chinese}"
       English: "${english}"
-
-      Score the translation from Chinese to English based on accuracy, naturalness, and semantic from 1 to 10, and explain the reason why it could get the score, then return the result in the json format below without additional words:
-
+      
+      Please respond in the following format:
       {
         "score": "the overall score",
-        "explanation": "the explanation"
+        "explanation": "briefly explain why the overall score was given"
       }`;
 
     const result = await model.generateContent(prompt);
