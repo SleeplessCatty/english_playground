@@ -5,48 +5,6 @@ document.getElementById("english_sentence").style.display = "none";
 updateCheckButtonState(); // Initial state
 changeSentence();
 
-let chapters = [];
-let currentChapter = null;
-let currentSection = null;
-
-// 初始化加载数据
-fetch('/static/common/8000.json')
-    .then(response => response.json())
-    .then(data => {
-        chapters = data;
-        initializeChapters();
-    });
-
-// 初始化章节下拉列表
-function initializeChapters() {
-    const chapterSelect = document.getElementById('chapterSelect');
-    chapters.forEach((chapter, index) => {
-        const option = document.createElement('option');
-        option.value = index;
-        option.textContent = chapter.title;
-        chapterSelect.appendChild(option);
-    });
-}
-
-// 更新小节下拉列表
-function updateSections() {
-    const chapterIndex = document.getElementById('chapterSelect').value;
-    const sectionSelect = document.getElementById('sectionSelect');
-    
-    // 清空现有选项
-    sectionSelect.innerHTML = '<option value="">请选择小节</option>';
-    
-    if (chapterIndex === '') return;
-    
-    currentChapter = chapters[chapterIndex];
-    currentChapter.sections.forEach((section, index) => {
-        const option = document.createElement('option');
-        option.value = index;
-        option.textContent = section.sub_title;
-        sectionSelect.appendChild(option);
-    });
-}
-
 function updateCheckButtonState() {
   const inputText = document.getElementById("english-input").value.trim();
   const checkButton = document.getElementById("compButton");
@@ -54,30 +12,23 @@ function updateCheckButtonState() {
 }
 
 function changeSentence() {
-    const inputElement = document.getElementById("english-input");
-    inputElement.value = "";
-    document.getElementById("english_sentence").style.display = "none";
-    document.getElementById("showButton").innerText = "Show Result";
-    document.getElementById("score").innerText = "";
-    document.getElementById("explanation").innerText = "";
-    updateCheckButtonState();
+  const inputElement = document.getElementById("english-input");
+  inputElement.value = "";
+  document.getElementById("english_sentence").style.display = "none";
+  document.getElementById("showButton").innerText = "Show Result";
+  document.getElementById("score").innerText = "";
+  document.getElementById("explanation").innerText = "";
+  updateCheckButtonState();
 
-    const chapterIndex = document.getElementById('chapterSelect').value;
-    const sectionIndex = document.getElementById('sectionSelect').value;
-    
-    if (chapterIndex === '' || sectionIndex === '') {
-        document.getElementById("chinese_sentence").innerText = '请选择章节和小节';
-        document.getElementById("english_sentence").innerText = '';
-        return;
-    }
-
-    const section = chapters[chapterIndex].sections[sectionIndex];
-    const sentences = section.content;
-    const randomIndex = Math.floor(Math.random() * sentences.length);
-    
-    const sentence = sentences[randomIndex];
-    document.getElementById("chinese_sentence").innerText = sentence.cn;
-    document.getElementById("english_sentence").innerText = sentence.en;
+  const number = document.getElementById("changeSource").value;
+  fetch("/random_sentence?file=" + number)
+    .then((response) => response.json())
+    .then((data) => {
+      chinese = data.chinese;
+      document.getElementById("chinese_sentence").innerText = chinese;
+      english = data.english;
+      document.getElementById("english_sentence").innerText = english;
+    });
 }
 
 function check() {
