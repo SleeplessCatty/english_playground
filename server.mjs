@@ -53,6 +53,10 @@ app.get("/cte", (req, res) => {
   res.sendFile(join(__dirname, "templates", "chinese_to_english.html"));
 });
 
+app.get("/cc", (req, res) => {
+  res.sendFile(join(__dirname, "templates", "common_conversation.html"));
+});
+
 app.get("/random_sentence", async (req, res, next) => {
   try {
     let filename = req.query.file;

@@ -33,16 +33,9 @@
 
         <div class="sub-navigation">
             <div class="level-select">
-                <select id="changeSource" class="select-level" onchange="changeSentence()">
-                    <option value="1">1-3500词汇例句</option>
-                    <option value="2">3501-5500词汇例句</option>
-                    <option value="3">5501-7500词汇例句</option>
-                    <option value="4">7501-8500词汇例句</option>
-                    <option value="5">8501-9500词汇例句</option>
-                    <option value="6">9501-10500词汇例句</option>
-                    <option value="7">10501-11500词汇例句</option>
-                    <option value="8">11501-12500词汇例句</option>
-                    <option value="9">12501-13500词汇例句</option>
+                <select id="chapterSelect" class="select-level" onchange="updateSections()">
+                </select>
+                <select id="sectionSelect" class="select-level" onchange="changeSentence()">
                 </select>
             </div>
         </div>
@@ -77,7 +70,7 @@
             </div>
         </main>
     </div>
-    <script src="/static/chinese_to_english.js"></script>
+    <script src="/static/common_conversation.js"></script>
 </body>
 
 </html>
