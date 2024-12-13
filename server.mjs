@@ -59,7 +59,7 @@ app.get("/random_sentence", async (req, res, next) => {
     if (filename === undefined) {
       filename = Math.floor(Math.random() * 9) + 1;
     }
-    const sentencesDir = join(__dirname, "sentences");
+    const sentencesDir = join(__dirname, "static", "dict");
     const filePath = join(sentencesDir, `${filename}.txt`);
 
     if (!existsSync(filePath)) {
