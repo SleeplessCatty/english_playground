@@ -18,11 +18,6 @@
                 Home
             </a>
             <div class="nav-buttons">
-                <button id="changeButton" class="nav-icon-button" onclick="changeSentence()">
-                    <svg class="change-icon" viewBox="0 0 24 24" width="28" height="28">
-                        <path d="M19 8l-4 4h3c0 3.31-2.69 6-6 6-1.01 0-1.97-.25-2.8-.7l-1.46 1.46C8.97 19.54 10.43 20 12 20c4.42 0 8-3.58 8-8h3l-4-4zM6 12c0-3.31 2.69-6 6-6 1.01 0 1.97.25 2.8.7l1.46-1.46C15.03 4.46 13.57 4 12 4c-4.42 0-8 3.58-8 8H1l4 4 4-4H6z"/>
-                    </svg>
-                </button>
                 <button id="speakButton" class="nav-icon-button" onclick="speakEnglish()">
                     <svg class="change-icon" viewBox="0 0 24 24" width="28" height="28">
                         <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
@@ -44,28 +39,16 @@
             <div class="translation-section">
                 <p id="chinese_sentence" class="sentence chinese"></p>
                 <p id="english_sentence" class="sentence english"></p>
-                <textarea id="english-input" class="input-area" placeholder="Translate to English..."></textarea>
             </div>
 
             <div class="controls-section">
                 <div class="primary-controls">
-                    <button id="compButton" class="btn primary" onclick="check()">
-                        Check
+                    <button id="nextButton" class="btn primary" onclick="changeSentence()">
+                        Next
                     </button>
                     <button id="showButton" class="btn secondary" onclick="showResult()">
                         Show Result
                     </button>
-                </div>
-            </div>
-
-            <div id="results" class="results-section">
-                <div class="score">
-                    <div class="label">Score:</div>
-                    <div class="value" id="score"></div>
-                </div>
-                <div class="explanation">
-                    <div class="label">Explanation:</div>
-                    <div class="value" id="explanation"></div>
                 </div>
             </div>
         </main>

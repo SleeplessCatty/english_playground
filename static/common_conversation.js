@@ -1,8 +1,3 @@
-document
-  .getElementById("english-input")
-  .addEventListener("input", updateCheckButtonState);
-document.getElementById("english_sentence").style.display = "none";
-updateCheckButtonState(); // Initial state
 changeSentence();
 
 let chapters = [];
@@ -59,20 +54,9 @@ function updateSections() {
     }
 }
 
-function updateCheckButtonState() {
-  const inputText = document.getElementById("english-input").value.trim();
-  const checkButton = document.getElementById("compButton");
-  checkButton.disabled = inputText === "";
-}
-
 function changeSentence() {
-    const inputElement = document.getElementById("english-input");
-    inputElement.value = "";
     document.getElementById("english_sentence").style.display = "none";
     document.getElementById("showButton").innerText = "Show Result";
-    document.getElementById("score").innerText = "";
-    document.getElementById("explanation").innerText = "";
-    updateCheckButtonState();
 
     const chapterIndex = document.getElementById('chapterSelect').value;
     const sectionIndex = document.getElementById('sectionSelect').value;
@@ -100,35 +84,6 @@ function changeSentence() {
     
     document.getElementById("chinese_sentence").innerText = sentence.cn;
     document.getElementById("english_sentence").innerText = sentence.en;
-}
-
-function check() {
-  let inputText = document.getElementById("english-input").value;
-  inputText = inputText.trim();
-  if (inputText == "") {
-    return;
-  }
-  const chinese = document.getElementById("chinese_sentence").innerText;
-
-  fetch("/chinesetoenglishscore", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      chinese: chinese,
-      english: inputText,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      content = data.content;
-      document.getElementById("score").innerText = content.score;
-      document.getElementById("explanation").innerText = content.explanation;
-    })
-    .catch((error) => {
-      console.error("Error fetching audio:", error);
-    });
 }
 
 function showResult() {
